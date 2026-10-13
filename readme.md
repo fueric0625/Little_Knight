@@ -1,0 +1,2 @@
+启动调试：
+Start-Process "C:\Users\eric_\AppData\Local\Microsoft\WinGet\Packages\GodotEngine.GodotEngine_Microsoft.Winget.Source_8wekyb3d8bbwe\Godot_v4.7.2-stable_win64.exe" -ArgumentList '--path','e:\knight'

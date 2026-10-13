@@ -1,0 +1,36 @@
+[gd_scene load_steps=3 format=3]
+
+[ext_resource type="Script" path="res://player/player.gd" id="1_player"]
+[ext_resource type="Texture2D" path="res://art/character_rectangle_yellow.png" id="2_sprite"]
+
+[node name="Player" type="CharacterBody2D"]
+z_index = 10
+floor_snap_length = 6.0
+script = ExtResource("1_player")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_sprite")
+
+[node name="Weapon" type="Sprite2D" parent="."]
+visible = false
+z_index = 1
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 20.0
+
+[node name="DebugLayer" type="CanvasLayer" parent="."]
+
+[node name="DebugLabel" type="Label" parent="DebugLayer"]
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 760.0
+offset_bottom = 360.0
+mouse_filter = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "状态"
