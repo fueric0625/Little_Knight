@@ -2,11 +2,12 @@ extends Node2D
 
 const LAYOUT_PATH := "res://levels/test_layout.txt"
 const TILE_PATH := "res://art/tile_brick.png"
+const CELL_SIZE := 128.0
 
 
 func _ready() -> void:
 	var texture := load(TILE_PATH) as Texture2D
-	var cell := texture.get_size()
+	var cell := Vector2(CELL_SIZE, CELL_SIZE)
 	var rows := _read_rows()
 	if rows.is_empty():
 		return
@@ -51,6 +52,8 @@ func _build_tiles(texture: Texture2D, cell: Vector2, rows: PackedStringArray) ->
 			body.position = Vector2((x + 0.5) * cell.x, (y + 0.5) * cell.y)
 			var tile_sprite := Sprite2D.new()
 			tile_sprite.texture = texture
+			var tex_size := texture.get_size()
+			tile_sprite.scale = Vector2(cell.x / tex_size.x, cell.y / tex_size.y)
 			body.add_child(tile_sprite)
 			var tile_collision := CollisionShape2D.new()
 			tile_collision.shape = shape

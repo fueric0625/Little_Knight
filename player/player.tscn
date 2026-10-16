@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_player"]
-[ext_resource type="Texture2D" path="res://art/character_rectangle_yellow.png" id="2_sprite"]
+[ext_resource type="Texture2D" path="res://art/character/character_Idle_Right_NoWeapon.png" id="2_sprite"]
 
 [node name="Player" type="CharacterBody2D"]
 z_index = 10

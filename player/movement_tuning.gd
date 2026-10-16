@@ -2,7 +2,7 @@ class_name MovementTuning
 extends Resource
 
 ## 改这个文件里的默认值，然后重新运行场景。
-## 时间单位是秒，速度单位是像素/秒。这些数字只是起点，不是原版参数。
+## 时长单位是毫秒。速度仍是像素/秒，重力是像素/秒²。这些数字只是起点，不是原版参数。
 ##
 ## 砖块和角色图都是 128 像素。按现在的默认值粗估：
 ## 点按跳跃大约能上一格高的台、跨过一格宽的坑。
@@ -23,17 +23,17 @@ extends Resource
 ## 下落速度上限。向下为正。
 @export var max_fall_speed: float = 1500.0
 ## 走下平台边缘后，仍可起跳的时间。主动跳离平台不会重新获得这段时间。
-@export var coyote_time: float = 0.08
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var coyote_ms: float = 80.0
 ## 落地前按下跳跃、落地后仍会补一次跳的时间。
-@export var jump_buffer_time: float = 0.08
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var jump_buffer_ms: float = 80.0
 
 @export_group("冲刺")
 ## 冲刺水平速度。冲刺期间垂直速度为 0，不受重力，也不能转向。
 @export var dash_speed: float = 2100.0
 ## 冲刺持续时间。
-@export var dash_duration: float = 0.18
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var dash_ms: float = 180.0
 ## 冲刺结束后的冷却。落地刷新是否生效由下面的开关决定。
-@export var dash_cooldown: float = 0.6
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var dash_cooldown_ms: float = 600.0
 ## 为真时，从空中落地会立刻清掉冲刺冷却。站在地上冲刺仍要等冷却。
 @export var refresh_dash_on_land: bool = true
 
@@ -50,17 +50,19 @@ extends Resource
 @export var sample_enemy_mass: float = 1.0
 
 @export_subgroup("轻击")
-## 前摇、出手、后摇。武器图片只在出手段出现。单位是秒。
-@export var light_startup: float = 0.05
-@export var light_active: float = 0.07
-@export var light_recovery: float = 0.09
+## 前摇、出手、后摇。武器在三段里都显示。轻击后摇整段都可以被冲刺取消。
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_startup_ms: float = 50.0
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_active_ms: float = 70.0
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_recovery_ms: float = 90.0
 ## 命中时的力度。击退速度 = 力度 / 重量。
 @export var light_force: float = 500.0
 
 @export_subgroup("重击")
-@export var heavy_startup: float = 0.20
-@export var heavy_active: float = 0.10
-@export var heavy_recovery: float = 0.34
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_startup_ms: float = 200.0
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_active_ms: float = 100.0
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_recovery_ms: float = 340.0
+## 后摇开始后，仍可用冲刺取消的时间。只占 340 毫秒后摇的前缀，过后冲刺输入忽略。
+@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_dash_cancel_ms: float = 120.0
 @export var heavy_force: float = 1400.0
 ## 空中重击的下砸速度。按下后水平速度立刻归零，垂直速度固定为这个值，直到落地或这次攻击结束。向下为正。
 @export var heavy_air_drop_speed: float = 4800.0
