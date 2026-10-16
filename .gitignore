@@ -1,1 +1,5 @@
 .godot/
+
+art/*
+!art/character/
+!art/map/

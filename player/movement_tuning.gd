@@ -12,6 +12,8 @@ extends Resource
 @export_group("跑")
 ## 水平速度。按下立刻达到，松手立刻归零，空中也一样。
 @export var run_speed: float = 420.0
+## 按住行走键时的水平速度。动画用走，松手恢复跑。
+@export var walk_speed: float = 200.0
 
 @export_group("跳")
 ## 起跳瞬间的垂直速度。Godot 里向上为负。

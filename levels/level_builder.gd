@@ -1,7 +1,7 @@
 extends Node2D
 
 const LAYOUT_PATH := "res://levels/test_layout.txt"
-const TILE_PATH := "res://art/tile_brick.png"
+const TILE_PATH := "res://art/map/tile_brick.png"
 const CELL_SIZE := 128.0
 
 
