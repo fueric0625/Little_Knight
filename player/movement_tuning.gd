@@ -52,19 +52,9 @@ extends Resource
 @export var sample_enemy_mass: float = 1.0
 
 @export_subgroup("轻击")
-## 前摇、出手、后摇。武器在三段里都显示。轻击后摇整段都可以被冲刺取消。
+## 前摇、出手、后摇。刀光从出手亮到后摇结束。轻击后摇整段都可以被冲刺取消。
 @export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_startup_ms: float = 50.0
 @export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_active_ms: float = 70.0
 @export_range(0.0, 5000.0, 1.0, "suffix:ms") var light_recovery_ms: float = 90.0
 ## 命中时的力度。击退速度 = 力度 / 重量。
 @export var light_force: float = 500.0
-
-@export_subgroup("重击")
-@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_startup_ms: float = 200.0
-@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_active_ms: float = 100.0
-@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_recovery_ms: float = 340.0
-## 后摇开始后，仍可用冲刺取消的时间。只占 340 毫秒后摇的前缀，过后冲刺输入忽略。
-@export_range(0.0, 5000.0, 1.0, "suffix:ms") var heavy_dash_cancel_ms: float = 120.0
-@export var heavy_force: float = 1400.0
-## 空中重击的下砸速度。按下后水平速度立刻归零，垂直速度固定为这个值，直到落地或这次攻击结束。向下为正。
-@export var heavy_air_drop_speed: float = 4800.0
